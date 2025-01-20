@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Do You Love Me?</title>
+    <style>
+        body {
+            font-family: 'Comic Sans MS', cursive, sans-serif;
+            background-color: #ffe4e1;
+            text-align: center;
+            padding-top: 50px;
+            background-image: linear-gradient(to bottom right, #ffcccc, #ff99cc);
+        }
+
+        .container {
+            margin: 0 auto;
+            padding: 30px;
+            background: #fff;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            width: 350px;
+            border-radius: 15px;
+            border: 2px solid #ff6f91;
+        }
+
+        h1 {
+            color: #ff4d6d;
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        .buttons {
+            margin-top: 20px;
+            position: relative;
+            height: 100px; /* Add height to ensure space for the jumping button */
+        }
+
+        .button {
+            padding: 10px 20px;
+            margin: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            border: none;
+            border-radius: 25px;
+            color: #fff;
+            transition: transform 0.2s;
+        }
+
+        .button:hover {
+            transform: scale(1.1);
+        }
+
+        .yes {
+            background-color: #ff4081;
+            position: absolute;
+        }
+
+        .no {
+            background-color: #6f4fff;
+        }
+
+        .message {
+            margin-top: 20px;
+            color: #6f4fff;
+            font-size: 18px;
+            display: none;
+            animation: fadeIn 1s;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Do You Love Me?</h1>
+        <div class="buttons">
+            <button class="button yes" id="yesBtn">Yes</button>
+            <button class="button no" id="noBtn">No</button>
+        </div>
+        <p class="message" id="message">Okay, I want to break up, so we break up.</p>
+    </div>
+
+    <script>
+        const yesBtn = document.getElementById('yesBtn');
+        const noBtn = document.getElementById('noBtn');
+        const message = document.getElementById('message');
+
+        // Move the "Yes" button to a random position with more dramatic jumps
+        yesBtn.addEventListener('mouseover', () => {
+            const container = yesBtn.parentElement;
+            const containerRect = container.getBoundingClientRect();
+
+            const randomX = Math.random() * (containerRect.width - yesBtn.offsetWidth);
+            const randomY = Math.random() * (containerRect.height - yesBtn.offsetHeight);
+
+            yesBtn.style.position = 'absolute';
+            yesBtn.style.left = `${randomX}px`;
+            yesBtn.style.top = `${randomY}px`;
+
+            // Add a playful spin effect
+            yesBtn.style.transform = `rotate(${Math.random() * 360}deg)`;
+        });
+
+        // Show the message when the "No" button is clicked
+        noBtn.addEventListener('click', () => {
+            message.style.display = 'block';
+        });
+    </script>
+</body>
+</html>
